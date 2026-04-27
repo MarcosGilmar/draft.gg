@@ -24,10 +24,9 @@ export class AuthenticateController {
   async handle(@Body() body: AuthenticateBodySchema) {
     const { email, password } = body;
 
-    const { user } = await this.authenticateUser.execute({ email, password });
-
-    const accessToken = this.jwtService.sign({
-      sub: user.id.toValue(),
+    const { accessToken } = await this.authenticateUser.execute({
+      email,
+      password,
     });
 
     return { access_token: accessToken };

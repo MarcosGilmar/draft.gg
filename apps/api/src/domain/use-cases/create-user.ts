@@ -1,5 +1,5 @@
 import { ConflictException, Injectable } from '@nestjs/common';
-import { hash } from 'bcryptjs';
+import { HashGenerator } from '../cryptography/hash-generator';
 import { User } from '../entities/user';
 import { UsersRepository } from '../repositories/users-repository';
 
@@ -10,7 +10,10 @@ interface CreateUserCaseInput {
 }
 @Injectable()
 export class CreateUserUseCase {
-  constructor(private usersRepository: UsersRepository) {}
+  constructor(
+    private usersRepository: UsersRepository,
+    private hashGenerator: HashGenerator,
+  ) {}
 
   async execute({ name, email, password }: CreateUserCaseInput): Promise<void> {
     const userWithSameEmail = await this.usersRepository.findByEmail(email);
@@ -19,7 +22,7 @@ export class CreateUserUseCase {
       throw new ConflictException(); //Desacoplar dessa camada o Conflict
     }
 
-    const hashedPassword = await hash(password, 8); //Desacoplar dessa camada o hash
+    const hashedPassword = await this.hashGenerator.hash(password);
 
     const user = User.create({
       name,
