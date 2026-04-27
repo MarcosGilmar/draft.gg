@@ -1,14 +1,9 @@
-import {
-  Body,
-  ConflictException,
-  Controller,
-  Post,
-  UseGuards,
-} from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
+import { CreateSubjectUseCase } from 'src/domain/use-cases/create-subject';
 import { CurrentUser } from 'src/infra/auth/current-user-decorator';
 import { JwtAuthGuard } from 'src/infra/auth/jwt.auth.guard';
 import type { TokenPayloadSchema } from 'src/infra/auth/jwt.strategy';
-import { PrismaService } from 'src/infra/database/prisma/prisma.service';
 import { ZodValidationPipe } from 'src/infra/http/pipes/zod-validation-pipe';
 import z from 'zod';
 
@@ -21,7 +16,7 @@ type CreateSubjectBodySchema = z.infer<typeof createSubjectBodySchema>;
 @Controller('/subjects')
 @UseGuards(JwtAuthGuard)
 export class CreateSubjectController {
-  constructor(private readonly prismaService: PrismaService) {}
+  constructor(private createSubject: CreateSubjectUseCase) {}
 
   @Post()
   async handle(
@@ -31,23 +26,9 @@ export class CreateSubjectController {
   ) {
     const { name } = body;
 
-    const subjectWithSameName = await this.prismaService.subject.findFirst({
-      where: {
-        name,
-      },
-    });
-
-    if (subjectWithSameName) {
-      throw new ConflictException('Subjects with the same name');
-    }
-
-    const userId = currentUser.sub;
-
-    await this.prismaService.subject.create({
-      data: {
-        name,
-        userId,
-      },
+    await this.createSubject.execute({
+      name,
+      userId: new UniqueEntityId(currentUser.sub),
     });
   }
 }

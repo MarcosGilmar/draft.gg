@@ -1,4 +1,4 @@
-import { Subject as PrismaSubject } from 'generated/prisma/client';
+import { Prisma, Subjects as PrismaSubject } from 'generated/prisma/client';
 import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
 import { Subject } from 'src/domain/entities/subject';
 
@@ -15,7 +15,7 @@ export class PrismaSubjectMapper {
     );
   }
 
-  static toPrisma(subject: Subject) {
+  static toPrisma(subject: Subject): Prisma.SubjectsUncheckedCreateInput {
     return {
       id: subject.id.toValue(),
       name: subject.name,

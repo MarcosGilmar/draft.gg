@@ -1,4 +1,4 @@
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { hash } from 'bcryptjs';
 import { User } from '../entities/user';
 import { UsersRepository } from '../repositories/users-repository';
@@ -8,6 +8,7 @@ interface CreateUserCaseInput {
   email: string;
   password: string;
 }
+@Injectable()
 export class CreateUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 

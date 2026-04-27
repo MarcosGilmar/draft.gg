@@ -9,7 +9,7 @@ export class PrismaSubjectsRepository implements SubjectsRepository {
   constructor(private prismaService: PrismaService) {}
 
   async findWithSameName(name: string): Promise<Subject | null> {
-    const subject = await this.prismaService.subject.findFirst({
+    const subject = await this.prismaService.subjects.findFirst({
       where: {
         name,
       },
@@ -23,6 +23,6 @@ export class PrismaSubjectsRepository implements SubjectsRepository {
   async create(subject: Subject): Promise<void> {
     const data = PrismaSubjectMapper.toPrisma(subject);
 
-    await this.prismaService.subject.create({ data });
+    await this.prismaService.subjects.create({ data });
   }
 }

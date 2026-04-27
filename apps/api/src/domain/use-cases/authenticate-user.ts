@@ -1,4 +1,4 @@
-import { UnauthorizedException } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UsersRepository } from '../repositories/users-repository';
 import { compare } from 'bcryptjs';
 
@@ -7,6 +7,7 @@ interface AuthenticateUserUseCaseInput {
   password: string;
 }
 
+@Injectable()
 export class AuthenticateUserUseCase {
   constructor(private usersRepository: UsersRepository) {}
 

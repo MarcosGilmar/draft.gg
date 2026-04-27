@@ -1,4 +1,4 @@
-import { User as PrismaUser } from 'generated/prisma/client';
+import { Prisma, Users as PrismaUser } from 'generated/prisma/client';
 import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
 import { User } from 'src/domain/entities/user';
 
@@ -15,7 +15,7 @@ export class PrismaUserMapper {
     );
   }
 
-  static toPrisma(user: User) {
+  static toPrisma(user: User): Prisma.UsersUncheckedCreateInput {
     return {
       id: user.id.toValue(),
       name: user.name,

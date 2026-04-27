@@ -1,13 +1,14 @@
-import { ConflictException } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
+import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
 import { Subject } from '../entities/subject';
 import { SubjectsRepository } from '../repositories/subjects-repository';
-import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
 
 interface CreateSubjectUseCaseInput {
   name: string;
   userId: UniqueEntityId;
 }
 
+@Injectable()
 export class CreateSubjectUseCase {
   constructor(private subjectsRepository: SubjectsRepository) {}
 
