@@ -6,9 +6,10 @@ import { DatabaseModule } from '../database/database.module';
 import { AuthenticateController } from './controllers/authenticate-controller';
 import { CreateAccountController } from './controllers/create-account.controller';
 import { CreateSubjectController } from './controllers/create-subject.controller';
+import { CryptographyModule } from '../cryptography/cryptography.module';
 
 @Module({
-  imports: [DatabaseModule],
+  imports: [DatabaseModule, CryptographyModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
