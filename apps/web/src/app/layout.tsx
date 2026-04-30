@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={dmSans.className}>
+      <body className={`${dmSans.variable} ${syne.variable}`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -207,7 +207,12 @@
 
   body {
     min-height: 100dvh;
-    background: var(--background);
+    background: linear-gradient(
+      90deg,
+      var(--background) 0%,
+      var(--background-subtle) 50%,
+      var(--accent-muted) 100%
+    );
     color: var(--foreground);
     font-family: var(--font-body);
     line-height: 1.6;
@@ -216,6 +221,15 @@
       color 0.25s ease,
       border-color 0.25s ease;
     @apply bg-background text-foreground;
+  }
+
+  .dark body {
+    background: linear-gradient(
+      90deg,
+      var(--background) 0%,
+      var(--background-subtle) 50%,
+      var(--accent-muted) 100%
+    );
   }
 
   h1,
