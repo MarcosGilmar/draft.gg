@@ -1,3 +1,6 @@
+-- CreateEnum
+CREATE TYPE "NoteType" AS ENUM ('MATCH', 'MATCHUP', 'GENERAL');
+
 -- CreateTable
 CREATE TABLE "users" (
     "id" TEXT NOT NULL,
@@ -10,18 +13,20 @@ CREATE TABLE "users" (
 );
 
 -- CreateTable
-CREATE TABLE "subjects" (
+CREATE TABLE "notes" (
     "id" TEXT NOT NULL,
-    "name" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "type" "NoteType" NOT NULL DEFAULT 'GENERAL',
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMP(3) NOT NULL,
     "user_id" TEXT NOT NULL,
 
-    CONSTRAINT "subjects_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "notes_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- AddForeignKey
-ALTER TABLE "subjects" ADD CONSTRAINT "subjects_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "notes" ADD CONSTRAINT "notes_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("id") ON DELETE CASCADE ON UPDATE CASCADE;

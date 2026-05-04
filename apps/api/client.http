@@ -1,5 +1,5 @@
 @baseUrl = http://localhost:3333
-@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkNjJlNzM2Yy0yZjczLTQxNjUtOTk4Yi0wZDA2MzRlNzRlNmUiLCJpYXQiOjE3NzczMDgyMzB9.DNcawqPo2NJOrY-OL5obCX485ar1pGUQSz4gGHjfVsHFbAc2SjSDxWxmrvhbVDSBQPRWw7jTtsrYUZZBJJyGN8GSEq47dkM41dO3kckES1V0G0ITle6YKdIa8Xjlv4zAwS4QfkPaaNXnwpE4TAxC5QTPkavBWFYyRZH5eCfJekOTGWdi-9G0gWbg74DWeR7jDv3dQnT0eZcDqEIpoxNvCuXBBh7dYcZ5Khrv3_fzr-jhVq98g3vMCGGM2Uc9SpbSmqVPFxubCN22ikNb6zcU5t0L0Fr7CmK4dmJzy7z5t5oGvudosRqf6aljgDFDs9DmUzp3QHW0ji6-z6XBEexvFA
+@authToken = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NTRiZmRlMy01MDE3LTQyNDktOWFlYS1iODZkMTRiMjcwZGEiLCJpYXQiOjE3Nzc5MDQzNzB9.dJYgRWr0GlRDQdAaYyv4WF-ad-TmoCDRaUQbByCpfdxo9fn5kpSrqxQkL2kivYIjRdpntLREFX-MvsjmSCJN_yHKQjHiMdNmGHBuF0lNyvAONnFj2cqfWLQSUV6MvZFOYq7eYCetDzuOSBHT7a6lQ-bE05IfICPbS5Ai2YTgEP4vz3pTxSM_OMRjCxqoEOQVQ81Z0Rkv8yKaYi9CYVcdQdRbegX_sloJNyG66YCJwgL4JLhvRpTuvtwJG3vHix8z8O2D5xj7KgkcCB3UnZl8FuAgeU1SR2Nwkd75nbSnhdRozLzjnFzjiBResxd1pKf9njsfHqcKLOsH--8uQY3cbg
 
 # @name create_account
 POST {{baseUrl}}/accounts
@@ -24,11 +24,14 @@ Content-Type: application/json
 
 ###
 
-# @name create_subjects
-POST {{baseUrl}}/subjects
+# @name create_note
+POST {{baseUrl}}/notes
 Content-Type: application/json
 Authorization: Bearer {{authToken}}
 
 {
-    "name": "NestJS"
+    "title": "Título",
+    "content": "Content",
+    "type": "MATCH"
+
 }

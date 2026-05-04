@@ -1,6 +1,6 @@
-# Study App
+# Draft.gg
 
-Projeto para organizar estudos (monorepo).
+Projeto full-stack para organizar suas match-ups
 
 ## Tecnologias
 
@@ -88,14 +88,14 @@ Gerar o client do Prisma (necessário após alterar o schema):
 
 ```bash
 cd apps/api
-npm run prisma:generate
+npm run generate
 ```
 
 Rodar migrations em desenvolvimento:
 
 ```bash
 cd apps/api
-npm run prisma:migrate:dev
+npm run migrate:dev
 ```
 
 Abrir Prisma Studio:

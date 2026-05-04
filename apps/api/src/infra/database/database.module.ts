@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { SubjectsRepository } from 'src/domain/repositories/subjects-repository';
+import { NotesRepository } from 'src/domain/repositories/notes-repository';
 import { UsersRepository } from 'src/domain/repositories/users-repository';
 import { PrismaService } from './prisma/prisma.service';
-import { PrismaSubjectsRepository } from './prisma/repositories/prisma-subjects-repository';
+import { PrismaNotesRepository } from './prisma/repositories/prisma-notes-repository';
 import { PrismaUsersRepository } from './prisma/repositories/prisma-users-repository';
 
 @Module({
@@ -13,10 +13,10 @@ import { PrismaUsersRepository } from './prisma/repositories/prisma-users-reposi
       useClass: PrismaUsersRepository,
     },
     {
-      provide: SubjectsRepository,
-      useClass: PrismaSubjectsRepository,
+      provide: NotesRepository,
+      useClass: PrismaNotesRepository,
     },
   ],
-  exports: [UsersRepository, SubjectsRepository],
+  exports: [UsersRepository, NotesRepository],
 })
 export class DatabaseModule {}

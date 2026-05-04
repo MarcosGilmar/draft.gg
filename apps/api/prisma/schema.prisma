@@ -8,6 +8,12 @@ datasource db {
   provider = "postgresql"
 }
 
+enum NoteType {
+  MATCH
+  MATCHUP
+  GENERAL
+}
+
 model Users {
   id        String   @id @default(uuid())
   name      String
@@ -15,19 +21,21 @@ model Users {
   password  String
   createdAt DateTime @default(now()) @map("created_at")
 
-  subjects Subjects[]
+  notes Notes[]
 
   @@map("users")
 }
 
-model Subjects {
+model Notes {
   id        String   @id @default(uuid())
-  name      String
+  title     String
+  content   String
+  type NoteType @default(GENERAL)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 
   userId String @map("user_id")
-  user   Users   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user   Users  @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@map("subjects")
+  @@map("notes")
 }
