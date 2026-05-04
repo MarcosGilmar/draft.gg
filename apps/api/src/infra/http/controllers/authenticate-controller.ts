@@ -11,7 +11,7 @@ import { Public } from 'src/infra/auth/public';
 import { ZodValidationPipe } from 'src/infra/http/pipes/zod-validation-pipe';
 import z from 'zod';
 
-const authenticateBodySchema = z.object({
+export const authenticateBodySchema = z.object({
   email: z.email('E-mail inválido'),
   password: z.string().min(8, 'Senha deve conter pelo menos 8 caracteres'),
 });
