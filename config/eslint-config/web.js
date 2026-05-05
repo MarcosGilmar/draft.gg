@@ -1,14 +1,21 @@
 import eslint from '@eslint/js';
-import eslintConfigPrettier from 'eslint-config-prettier';
 import pluginNext from '@next/eslint-plugin-next';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import pluginReact from 'eslint-plugin-react';
 import pluginReactHooks from 'eslint-plugin-react-hooks';
+import { globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
-import { globalIgnores } from 'eslint/config';
 
-export const webConfig = tseslint.defineConfig(
-  globalIgnores(['.next/**', 'out/**', 'build/**', 'next-env.d.ts']),
+export const webConfig = tseslint.config(
+  globalIgnores([
+    '.next/**',
+    'out/**',
+    'build/**',
+    'next-env.d.ts',
+    'eslint.config.mjs',
+    'postcss.config.mjs',
+  ]),
   eslint.configs.recommended,
   ...tseslint.configs.recommendedTypeChecked,
   {

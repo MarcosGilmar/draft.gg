@@ -22,11 +22,7 @@ import { Controller, useForm } from 'react-hook-form';
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<AuthenticateBodySchema>({
+  const { control, handleSubmit } = useForm<AuthenticateBodySchema>({
     resolver: zodResolver(authenticateBodySchema),
     defaultValues: {
       email: '',
@@ -43,7 +39,10 @@ export default function LoginForm() {
         Entre na sua conta
       </CardTitle>
       <CardContent>
-        <form id="form-id" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          id="form-id"
+          onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+        >
           <FieldGroup>
             <Controller
               name="email"

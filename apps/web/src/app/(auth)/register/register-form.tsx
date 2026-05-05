@@ -35,11 +35,7 @@ const passwordRequirements = [
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isSubmitting },
-  } = useForm<CreateAccountBodySchema>({
+  const { control, handleSubmit } = useForm<CreateAccountBodySchema>({
     resolver: zodResolver(createAccountBodySchema),
     defaultValues: {
       name: '',
@@ -59,7 +55,10 @@ export default function RegisterForm() {
         Crie sua conta
       </CardTitle>
       <CardContent>
-        <form id="form-id" onSubmit={handleSubmit(onSubmit)}>
+        <form
+          id="form-id"
+          onSubmit={(event) => void handleSubmit(onSubmit)(event)}
+        >
           <FieldGroup>
             <Controller
               name="name"

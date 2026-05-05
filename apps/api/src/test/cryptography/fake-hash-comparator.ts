@@ -1,7 +1,7 @@
 import { HashComparator } from 'src/domain/cryptography/hash-comparator';
 
 export class FakeHashComparator implements HashComparator {
-  async compare(plain: string, hashed: string): Promise<boolean> {
-    return plain.concat('-hashed') === hashed;
+  compare(plain: string, hashed: string): Promise<boolean> {
+    return Promise.resolve(plain.concat('-hashed') === hashed);
   }
 }

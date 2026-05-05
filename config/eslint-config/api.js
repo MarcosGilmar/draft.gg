@@ -8,7 +8,7 @@ import tseslint from 'typescript-eslint';
  *
  * @type {import('eslint').Linter.Config[]}
  */
-export const apiConfig = tseslint.defineConfig(
+export const apiConfig = tseslint.config(
   {
     ignores: ['eslint.config.mjs'],
   },
