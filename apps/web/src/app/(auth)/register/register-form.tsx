@@ -9,42 +9,82 @@ import {
   FieldLabel,
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
-  AuthenticateBodySchema,
-  authenticateBodySchema,
+  createAccountBodySchema,
+  CreateAccountBodySchema,
 } from '@repo/shared/schemas/auth';
-import { Eye, EyeOff } from 'lucide-react';
+import { Check, Eye, EyeOff, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { Controller, useForm, useWatch } from 'react-hook-form';
 
-export default function LoginForm() {
+const passwordRequirements = [
+  { label: 'Mínimo 8 caracteres', check: (value: string) => value.length >= 8 },
+  {
+    label: 'Pelo menos uma letra maiúscula',
+    check: (value: string) => /[A-Z]/.test(value),
+  },
+  {
+    label: 'Pelo menos um número',
+    check: (value: string) => /[0-9]/.test(value),
+  },
+];
+
+export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const {
     control,
     handleSubmit,
     formState: { errors, isSubmitting },
-  } = useForm<AuthenticateBodySchema>({
-    resolver: zodResolver(authenticateBodySchema),
+  } = useForm<CreateAccountBodySchema>({
+    resolver: zodResolver(createAccountBodySchema),
     defaultValues: {
+      name: '',
       email: '',
       password: '',
     },
     mode: 'onTouched',
   });
 
+  const passwordValue = useWatch({ control, name: 'password' });
+
   const onSubmit = () => {};
 
   return (
     <Card className="w-full max-w-md">
       <CardTitle className="flex justify-center items-center text-foreground text-lg">
-        Entre na sua conta
+        Crie sua conta
       </CardTitle>
       <CardContent>
         <form id="form-id" onSubmit={handleSubmit(onSubmit)}>
           <FieldGroup>
+            <Controller
+              name="name"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid}>
+                  <FieldLabel htmlFor="name-input">
+                    Informe o seu nome
+                  </FieldLabel>
+                  <Input
+                    {...field}
+                    id="name-input"
+                    aria-invalid={fieldState.invalid}
+                    placeholder="John Doe"
+                    className="h-12 rounded-xl"
+                  />
+                  {fieldState.invalid && (
+                    <FieldError
+                      errors={[fieldState.error]}
+                      className="text-xs text-destructive"
+                    />
+                  )}
+                </Field>
+              )}
+            />
             <Controller
               name="email"
               control={control}
@@ -75,15 +115,7 @@ export default function LoginForm() {
               render={({ field, fieldState }) => (
                 <Field data-invalid={fieldState.invalid}>
                   <FieldLabel htmlFor="password-input">
-                    <div className="flex items-center w-full justify-between">
-                      <span>Senha</span>
-                      <Link
-                        href={'#'}
-                        className="text-xs text-primary underline-offset-4 hover:underline"
-                      >
-                        Esqueceu sua senha?
-                      </Link>
-                    </div>
+                    <span>Adicione uma senha</span>
                   </FieldLabel>
                   <div className="relative">
                     <Input
@@ -106,11 +138,25 @@ export default function LoginForm() {
                       )}
                     </button>
                   </div>
-                  {fieldState.invalid && (
-                    <FieldError
-                      errors={[fieldState.error]}
-                      className="text-xs text-destructive"
-                    />
+                  {passwordValue && (
+                    <ul>
+                      {passwordRequirements.map((req) => {
+                        const isValid = req.check(passwordValue ?? '');
+                        return (
+                          <li key={req.label}>
+                            <span
+                              className={cn(
+                                'flex w-full items-center justify-start gap-2',
+                                isValid ? 'text-success' : 'text-destructive',
+                              )}
+                            >
+                              {isValid ? <Check size={12} /> : <X size={12} />}
+                              {req.label}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
                   )}
                 </Field>
               )}
@@ -120,15 +166,11 @@ export default function LoginForm() {
       </CardContent>
       <CardFooter className="flex-col gap-2">
         <Button type="submit" form="form-id" className="w-full h-12">
-          Login
-        </Button>
-        <span className="text-foreground">ou</span>
-        <Button variant="outline" className="w-full h-12">
-          Login com o Google
+          Criar conta
         </Button>
 
-        <Button asChild variant="link" className="pt-10 w-full h-12">
-          <Link href={'/register'}>Ainda não possui uma conta?</Link>
+        <Button asChild variant="link" className="w-full h-12">
+          <Link href={'/login'}>Já possui uma conta?</Link>
         </Button>
       </CardFooter>
     </Card>
