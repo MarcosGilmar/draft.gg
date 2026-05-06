@@ -1,4 +1,4 @@
-import { ThemeProvider } from '@/components/theme-provider';
+import { Providers } from '@/providers';
 import { DM_Sans, Syne } from 'next/font/google';
 import './globals.css';
 
@@ -19,14 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${dmSans.variable} ${syne.variable}`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

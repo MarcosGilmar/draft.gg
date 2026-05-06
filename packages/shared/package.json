@@ -2,8 +2,17 @@
   "name": "@repo/shared",
   "version": "0.0.0",
   "private": true,
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "check-types": "tsc -p tsconfig.json --noEmit"
+  },
   "exports": {
-    "./schemas/*": "./src/schemas/*.ts"
+    "./schemas/*": {
+      "types": "./dist/schemas/*.d.ts",
+      "import": "./dist/schemas/*.js",
+      "require": "./dist/schemas/*.js"
+    }
   },
   "devDependencies": {
     "@repo/typescript-config": "*",
