@@ -1,5 +1,6 @@
 'use client';
 
+import { loginAction } from '@/actions/loginAction';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import {
@@ -31,7 +32,9 @@ export default function LoginForm() {
     mode: 'onTouched',
   });
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: AuthenticateBodySchema) => {
+    await loginAction(data);
+  };
 
   return (
     <Card className="w-full max-w-md">
@@ -126,7 +129,7 @@ export default function LoginForm() {
           Login com o Google
         </Button>
 
-        <Button asChild variant="link" className="pt-10 w-full h-12">
+        <Button asChild variant="link" className="mt-5 w-full h-12">
           <Link href={'/register'}>Ainda não possui uma conta?</Link>
         </Button>
       </CardFooter>

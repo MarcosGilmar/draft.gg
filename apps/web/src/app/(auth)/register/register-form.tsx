@@ -1,5 +1,6 @@
 'use client';
 
+import { registerAction } from '@/actions/registerAction';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import {
@@ -9,7 +10,7 @@ import {
   FieldLabel,
 } from '@/components/ui/field';
 import { Input } from '@/components/ui/input';
-import { cn } from '@/lib/utils';
+import { cn } from '@/lib/twmerge';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   createAccountBodySchema,
@@ -47,7 +48,9 @@ export default function RegisterForm() {
 
   const passwordValue = useWatch({ control, name: 'password' });
 
-  const onSubmit = () => {};
+  const onSubmit = async (data: CreateAccountBodySchema) => {
+    await registerAction(data);
+  };
 
   return (
     <Card className="w-full max-w-md">
