@@ -20,6 +20,7 @@ import { Check, Eye, EyeOff, X } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
+import { toast } from 'sonner';
 
 const passwordRequirements = [
   { label: 'Mínimo 8 caracteres', check: (value: string) => value.length >= 8 },
@@ -49,7 +50,11 @@ export default function RegisterForm() {
   const passwordValue = useWatch({ control, name: 'password' });
 
   const onSubmit = async (data: CreateAccountBodySchema) => {
-    await registerAction(data);
+    const result = await registerAction(data);
+
+    if (result.success === false) {
+      toast(result.error, { position: 'top-center' });
+    }
   };
 
   return (

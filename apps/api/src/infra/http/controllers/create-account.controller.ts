@@ -37,7 +37,9 @@ export class CreateAccountController {
     });
 
     if (createUserResult.isLeft()) {
-      throw new ConflictException();
+      const error = createUserResult.value;
+
+      throw new ConflictException(error.message);
     }
 
     const authenticateUserResult = await this.authenticateUser.execute({
@@ -46,7 +48,9 @@ export class CreateAccountController {
     });
 
     if (authenticateUserResult.isLeft()) {
-      throw new UnauthorizedException();
+      const error = authenticateUserResult.value;
+
+      throw new UnauthorizedException(error.message);
     }
 
     const { accessToken } = authenticateUserResult.value;

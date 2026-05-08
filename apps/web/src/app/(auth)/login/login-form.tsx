@@ -19,6 +19,7 @@ import { Eye, EyeOff } from 'lucide-react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
@@ -33,7 +34,11 @@ export default function LoginForm() {
   });
 
   const onSubmit = async (data: AuthenticateBodySchema) => {
-    await loginAction(data);
+    const result = await loginAction(data);
+
+    if (result.success === false) {
+      toast.error(result.error, { position: 'top-center' });
+    }
   };
 
   return (

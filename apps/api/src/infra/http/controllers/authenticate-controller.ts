@@ -20,7 +20,7 @@ export class AuthenticateController {
 
   @Post()
   @Public()
-  @HttpCode(201)
+  @HttpCode(200)
   @UsePipes(new ZodValidationPipe(authenticateBodySchema))
   async handle(@Body() body: AuthenticateBodySchema) {
     const { email, password } = body;
@@ -31,7 +31,9 @@ export class AuthenticateController {
     });
 
     if (result.isLeft()) {
-      throw new UnauthorizedException();
+      const error = result.value;
+
+      throw new UnauthorizedException(error.message);
     }
 
     const { accessToken } = result.value;
