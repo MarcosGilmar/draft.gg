@@ -18,7 +18,8 @@ model Users {
   id        String   @id @default(uuid())
   name      String
   email     String   @unique
-  password  String
+  password  String?
+  avatar    String?
   createdAt DateTime @default(now()) @map("created_at")
 
   notes Notes[]
@@ -30,7 +31,7 @@ model Notes {
   id        String   @id @default(uuid())
   title     String
   content   String
-  type NoteType @default(GENERAL)
+  type      NoteType @default(GENERAL)
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

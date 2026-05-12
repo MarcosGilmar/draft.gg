@@ -5,6 +5,12 @@ export const authenticateBodySchema = z.object({
   password: z.string().min(8, 'Senha deve conter pelo menos 8 caracteres'),
 });
 
+export const authenticateWithGoogleBodySchema = z.object({
+  email: z.email('E-mail inválido'),
+  name: z.string().trim().min(3, 'Nome deve ter pelo menos 3 caracteres'),
+  avatar: z.string().trim().optional(),
+});
+
 export const createAccountBodySchema = z.object({
   name: z.string().trim().min(3, 'Nome deve ter pelo menos 3 caracteres'),
   email: z.email('E-mail inválido'),
@@ -16,5 +22,9 @@ export const createAccountBodySchema = z.object({
 });
 
 export type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>;
+
+export type AuthenticateWithGoogleBodySchema = z.infer<
+  typeof authenticateWithGoogleBodySchema
+>;
 
 export type CreateAccountBodySchema = z.infer<typeof createAccountBodySchema>;

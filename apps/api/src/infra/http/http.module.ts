@@ -9,12 +9,15 @@ import { DatabaseModule } from '../database/database.module';
 import { AuthenticateController } from './controllers/authenticate-controller';
 import { CreateAccountController } from './controllers/create-account.controller';
 import { CreateNoteController } from './controllers/create-note.controller';
+import { AuthenticateWithGoogleUseCase } from 'src/domain/use-cases/authenticate-with-google';
+import { AuthenticateWithGoogle } from './controllers/authenticate-with-google-controller';
 
 @Module({
   imports: [DatabaseModule, CryptographyModule],
   controllers: [
     CreateAccountController,
     AuthenticateController,
+    AuthenticateWithGoogle,
     CreateNoteController,
   ],
   providers: [
@@ -23,8 +26,9 @@ import { CreateNoteController } from './controllers/create-note.controller';
       useClass: JwtAuthGuard,
     },
     CreateUserUseCase,
-    CreateNoteUseCase,
     AuthenticateUserUseCase,
+    AuthenticateWithGoogleUseCase,
+    CreateNoteUseCase,
   ],
 })
 export class HttpModule {}

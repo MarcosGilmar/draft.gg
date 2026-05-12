@@ -5,7 +5,8 @@ import { Optional } from 'src/core/utils/optional';
 export interface UserProps {
   name: string;
   email: string;
-  password: string;
+  password: string | null;
+  avatar: string | null;
   createdAt: Date;
 }
 
@@ -15,10 +16,18 @@ export class User extends Entity<UserProps> {
   }
 
   static create(
-    props: Optional<UserProps, 'createdAt'>,
+    props: Optional<UserProps, 'createdAt' | 'avatar' | 'password'>,
     id?: UniqueEntityId,
   ): User {
-    return new User({ ...props, createdAt: props.createdAt ?? new Date() }, id);
+    return new User(
+      {
+        ...props,
+        password: props.password ?? null,
+        avatar: props.avatar ?? null,
+        createdAt: props.createdAt ?? new Date(),
+      },
+      id,
+    );
   }
 
   get name() {
@@ -31,6 +40,10 @@ export class User extends Entity<UserProps> {
 
   get password() {
     return this.props.password;
+  }
+
+  get avatar() {
+    return this.props.avatar;
   }
 
   get createdAt() {
