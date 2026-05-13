@@ -14,7 +14,7 @@ import { AuthenticateWithGoogleUseCase } from 'src/domain/use-cases/authenticate
 import { Public } from 'src/infra/auth/public';
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
 
-@Controller('api/auth/google') //verificar endpoint
+@Controller('/auth/google')
 export class AuthenticateWithGoogle {
   constructor(
     private readonly authenticateWithGoogle: AuthenticateWithGoogleUseCase,

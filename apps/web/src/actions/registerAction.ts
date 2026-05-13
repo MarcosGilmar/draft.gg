@@ -30,7 +30,7 @@ export async function registerAction(data: CreateAccountBodySchema) {
       if (error.response?.status === 409) {
         return {
           success: false,
-          error: error.response.data.message ?? 'E-mail já cadastrado',
+          error: error.response.data.message ?? 'Erro ao processar cadastro. Tente novamente',
         };
       }
 

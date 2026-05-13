@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { Either, right } from 'src/core/either';
-import { User } from '../entities/user';
-import { UsersRepository } from '../repositories/users-repository';
 import { Encrypter } from '../cryptography/encrypter';
+import { User } from '../entities/user';
 import { InvalidCredentialsError } from '../errors/invalid-credentials-error';
+import { UsersRepository } from '../repositories/users-repository';
 
 interface AuthenticateWithGoogleUseCaseInput {
   email: string;
   name: string;
-  avatar?: string
+  avatar?: string;
 }
 
 type AuthenticateWithGoogleUseCaseOutput = Either<
@@ -26,14 +26,19 @@ export class AuthenticateWithGoogleUseCase {
   async execute({
     email,
     name,
-    avatar
+    avatar,
   }: AuthenticateWithGoogleUseCaseInput): Promise<AuthenticateWithGoogleUseCaseOutput> {
     let user = await this.usersRepository.findByEmail(email);
 
-    if(!user) {
+    if (!user) {
       user = User.create({
-        email, name, avatar, password: null
-      })
+        email,
+        name,
+        avatar,
+        password: null,
+      });
+
+      await this.usersRepository.create(user);
     }
 
     const accessToken = await this.encrypter.encrypt({
