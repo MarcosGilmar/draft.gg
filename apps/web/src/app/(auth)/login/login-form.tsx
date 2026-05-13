@@ -16,6 +16,7 @@ import {
   authenticateBodySchema,
 } from '@repo/shared/schemas/auth';
 import { Eye, EyeOff } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -103,6 +104,7 @@ export default function LoginForm() {
                     />
                     <button
                       type="button"
+                      tabIndex={-1}
                       onClick={() => setShowPassword((prev) => !prev)}
                       className="flex absolute right-3 top-1/2 -translate-y-1/2 text-foreground"
                     >
@@ -130,7 +132,11 @@ export default function LoginForm() {
           Login
         </Button>
         <span className="text-foreground">ou</span>
-        <Button variant="outline" className="w-full h-12">
+        <Button
+          variant="outline"
+          className="w-full h-12"
+          onClick={() => void signIn('google', { callbackUrl: '/dashboard' })}
+        >
           Login com o Google
         </Button>
 

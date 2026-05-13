@@ -17,6 +17,7 @@ import {
   CreateAccountBodySchema,
 } from '@repo/shared/schemas/auth';
 import { Check, Eye, EyeOff, X } from 'lucide-react';
+import { signIn } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Controller, useForm, useWatch } from 'react-hook-form';
@@ -135,6 +136,7 @@ export default function RegisterForm() {
                     />
                     <button
                       type="button"
+                      tabIndex={-1}
                       onClick={() => setShowPassword((prev) => !prev)}
                       className="flex absolute right-3 top-1/2 -translate-y-1/2 text-foreground"
                     >
@@ -174,6 +176,13 @@ export default function RegisterForm() {
       <CardFooter className="flex-col gap-2">
         <Button type="submit" form="form-id" className="w-full h-12">
           Criar conta
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full h-12"
+          onClick={() => void signIn('google', { callbackUrl: '/dashboard' })}
+        >
+          Continuar com o Google
         </Button>
 
         <Button asChild variant="link" className="w-full h-12">
