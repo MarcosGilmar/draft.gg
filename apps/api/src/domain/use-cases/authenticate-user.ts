@@ -33,9 +33,9 @@ export class AuthenticateUserUseCase {
       return left(new InvalidCredentialsError());
     }
 
-    //typescript narrowing 
-    if(!user.password) {
-      return left(new InvalidCredentialsError())
+    //typescript narrowing
+    if (!user.password) {
+      return left(new InvalidCredentialsError());
     }
 
     const isPasswordValid = await this.hashComparator.compare(

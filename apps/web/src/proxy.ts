@@ -5,8 +5,6 @@ const PUBLIC_ROUTES = ['/', '/login', '/register'];
 const PRIVATE_ROUTES = ['/dashboard'];
 
 export default function proxy(request: NextRequest) {
-console.log(request.nextUrl.pathname)
-
   const token = request.cookies.get(AUTH_COOKIE_NAME)?.value;
 
   const { pathname } = request.nextUrl;
