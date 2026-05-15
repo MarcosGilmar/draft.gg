@@ -1,10 +1,11 @@
-import { logoutAction } from '@/actions/logoutAction';
-import { Button } from '@/components/ui/button';
+import { SearchInput } from '@/components/common/SearchInput';
 
 export default function Dashboard() {
   return (
-    <form action={logoutAction}>
-      <Button type="submit">Logout</Button>
-    </form>
+    <div className="flex p-5">
+      <div className="flex w-150">
+        <SearchInput />
+      </div>
+    </div>
   );
 }

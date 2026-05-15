@@ -13,7 +13,9 @@ export default function Login() {
         />
       </div>
       <div className="flex flex-col items-center justify-center mb-5">
-        <h1 className="text-foreground-muted font-bold text-4xl">Draft.GG</h1>
+        <h1 className="text-accent tracking-tight font-bold text-4xl">
+          Draft.GG
+        </h1>
         <p className="text-foreground text-base">Organize suas partidas</p>
       </div>
 
