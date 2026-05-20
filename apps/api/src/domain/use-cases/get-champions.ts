@@ -3,9 +3,6 @@ import { Either, right } from 'src/core/either';
 import { ChampionsRepository } from '../repositories/champion-repository';
 import { ChampionProps } from '@repo/shared/types/champion';
 
-// interface GetChampionsUseCaseInput {
-// }
-
 type GetChampionsUseCaseOutput = Either<never, ChampionProps[]>;
 
 @Injectable()
