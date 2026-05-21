@@ -2,7 +2,6 @@ import {
   Body,
   ConflictException,
   Controller,
-  HttpCode,
   Post,
   UnauthorizedException,
   UsePipes,
@@ -25,7 +24,6 @@ export class CreateAccountController {
 
   @Post()
   @Public()
-  @HttpCode(201)
   @UsePipes(new ZodValidationPipe(createAccountBodySchema))
   async handle(@Body() body: CreateAccountBodySchema) {
     const { name, email, password } = body;

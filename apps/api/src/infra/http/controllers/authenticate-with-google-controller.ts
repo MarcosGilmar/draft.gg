@@ -1,7 +1,6 @@
 import {
   Body,
   Controller,
-  HttpCode,
   Post,
   UnauthorizedException,
   UsePipes,
@@ -22,7 +21,6 @@ export class AuthenticateWithGoogle {
 
   @Post()
   @Public()
-  @HttpCode(200)
   @UsePipes(new ZodValidationPipe(authenticateWithGoogleBodySchema))
   async handle(@Body() body: AuthenticateWithGoogleBodySchema) {
     const { email, name, avatar } = body;

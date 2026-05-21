@@ -8,9 +8,14 @@ import {
   CommandItem,
   CommandList,
 } from '@/components/ui/command';
+import { Spinner } from '@/components/ui/spinner';
+import { useChampions } from '@/hooks/use-champions';
 import { useState } from 'react';
+import { ChampionAvatar } from '../ChampionAvatar';
 
 export function SearchInput() {
+  const { data: champions = [], isLoading, isError, error } = useChampions();
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -27,9 +32,24 @@ export function SearchInput() {
 
       {open && (
         <CommandList onMouseDown={(event) => event.preventDefault()}>
-          <CommandEmpty>Campeão não encontrado</CommandEmpty>
+          <CommandEmpty>
+            {isLoading && (
+              <div className="flex justify-center items-center">
+                <Spinner className="size-6" />
+              </div>
+            )}
+            {isError && error.message && 'Erro ao carregar campeões'}
+          </CommandEmpty>
           <CommandGroup>
-            <CommandItem>Item 1</CommandItem>
+            {champions.map((champion) => (
+              <CommandItem key={champion.id} value={champion.name}>
+                <ChampionAvatar
+                  name={champion.name}
+                  imageUrl={champion.imageUrl}
+                />
+                {champion.name}
+              </CommandItem>
+            ))}
           </CommandGroup>
         </CommandList>
       )}

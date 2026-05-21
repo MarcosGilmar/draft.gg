@@ -1,4 +1,4 @@
-import { logoutAction } from '@/actions/logoutAction';
+import { logoutAction } from '@/actions/auth/logoutAction';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 

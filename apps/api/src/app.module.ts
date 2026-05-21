@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { envSchema } from './env';
 import { AuthModule } from './infra/auth/auth.module';
 import { HttpModule } from './infra/http/http.module';
+import { RiotModule } from './infra/riot/riot.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { HttpModule } from './infra/http/http.module';
     }),
     AuthModule,
     HttpModule,
+    RiotModule
   ],
 })
 export class AppModule {}

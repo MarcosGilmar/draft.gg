@@ -1,6 +1,6 @@
 'use client';
 
-import { registerAction } from '@/actions/registerAction';
+import { registerAction } from '@/actions/auth/registerAction';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardFooter, CardTitle } from '@/components/ui/card';
 import {

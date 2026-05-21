@@ -2,6 +2,7 @@ import { ChampionProps } from '@repo/shared/types/champion';
 import { Either, left, right } from 'src/core/either';
 import { ChampionsRepository } from '../repositories/champion-repository';
 import { ChampionNotFound } from '../errors/champion-not-found-error';
+import { Injectable } from '@nestjs/common';
 
 interface GetChampionByIdUseCaseInput {
   id: string;
@@ -9,6 +10,7 @@ interface GetChampionByIdUseCaseInput {
 
 type GetChampionByIdUseCaseOutput = Either<ChampionNotFound, ChampionProps>;
 
+@Injectable()
 export class GetChampionByIdUseCase {
   constructor(private championsRepository: ChampionsRepository) {}
 
