@@ -6,7 +6,7 @@ export function useChampion(id: string) {
     queryKey: ['champions', id],
     queryFn: async () => {
       const result = await fetchChampionByIdAction(id);
-      
+
       if (!result.success) throw new Error(result.error);
 
       return result.data;

@@ -10,16 +10,23 @@ import {
 } from '@/components/ui/command';
 import { Spinner } from '@/components/ui/spinner';
 import { useChampions } from '@/hooks/use-champions';
+import { cn } from '@/lib/twmerge';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { ChampionAvatar } from '../ChampionAvatar';
 
 export function SearchInput() {
   const { data: champions = [], isLoading, isError, error } = useChampions();
-
   const [open, setOpen] = useState(false);
+  const router = useRouter();
 
   return (
-    <Command>
+    <Command
+      className={cn(
+        `relative h-auto overflow-visible`,
+        open && ' rounded-b-none',
+      )}
+    >
       <CommandInput
         onFocus={() => setOpen(true)}
         onBlur={(event) => {
@@ -31,7 +38,10 @@ export function SearchInput() {
       />
 
       {open && (
-        <CommandList onMouseDown={(event) => event.preventDefault()}>
+        <CommandList
+          onMouseDown={(event) => event.preventDefault()}
+          className="absolute top-full left-0 right-0 z-50 bg-popover rounded-b-2xl"
+        >
           <CommandEmpty>
             {isLoading && (
               <div className="flex justify-center items-center">
@@ -40,9 +50,16 @@ export function SearchInput() {
             )}
             {isError && error.message && 'Erro ao carregar campeões'}
           </CommandEmpty>
-          <CommandGroup>
+          <CommandGroup className="**:[[cmdk-group-items]]:grid **:[[cmdk-group-items]]:grid-cols-4 **:[[cmdk-group-items]]:gap-2">
             {champions.map((champion) => (
-              <CommandItem key={champion.id} value={champion.name}>
+              <CommandItem
+                key={champion.id}
+                value={champion.name}
+                onSelect={() =>
+                  router.push(`/champion/${champion.id.toLowerCase()}`)
+                }
+                className="text-foreground-muted"
+              >
                 <ChampionAvatar
                   name={champion.name}
                   imageUrl={champion.imageUrl}

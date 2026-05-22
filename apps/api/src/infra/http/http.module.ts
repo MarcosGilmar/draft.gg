@@ -23,7 +23,7 @@ import { GetChampionByIdUseCase } from 'src/domain/use-cases/get-champions-by-id
     AuthenticateController,
     AuthenticateWithGoogle,
     CreateNoteController,
-    GetChampionsController
+    GetChampionsController,
   ],
   providers: [
     {
@@ -35,7 +35,7 @@ import { GetChampionByIdUseCase } from 'src/domain/use-cases/get-champions-by-id
     AuthenticateWithGoogleUseCase,
     CreateNoteUseCase,
     GetChampionsUseCase,
-    GetChampionByIdUseCase
+    GetChampionByIdUseCase,
   ],
 })
 export class HttpModule {}

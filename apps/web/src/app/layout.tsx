@@ -1,7 +1,8 @@
+import { Toaster } from '@/components/ui/sonner';
 import { Providers } from '@/providers';
+import { Metadata } from 'next';
 import { DM_Sans, Syne } from 'next/font/google';
 import './globals.css';
-import { Toaster } from '@/components/ui/sonner';
 
 const dmSans = DM_Sans({
   subsets: ['latin'],
@@ -11,6 +12,11 @@ const syne = Syne({
   subsets: ['latin'],
   variable: '--font-display',
 });
+
+export const metadata: Metadata = {
+  title: 'Draft.GG',
+  description: 'Match-ups e estatísticas de League of Legends',
+};
 
 export default function RootLayout({
   children,

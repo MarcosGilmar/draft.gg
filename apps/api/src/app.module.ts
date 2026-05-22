@@ -13,7 +13,7 @@ import { RiotModule } from './infra/riot/riot.module';
     }),
     AuthModule,
     HttpModule,
-    RiotModule
+    RiotModule,
   ],
 })
 export class AppModule {}

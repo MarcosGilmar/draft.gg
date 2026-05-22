@@ -2,9 +2,13 @@ import { logoutAction } from '@/actions/auth/logoutAction';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 
-export function DashboardHeader() {
+export function AppHeader() {
   return (
-    <header className="flex items-center bg-linear-to-r from-accent-muted to-accent-muted h-15 min-w-screen">
+    <header
+      className="flex items-center bg-linear-to-r 
+                from-accent-muted/50 to-accent-muted 
+                h-15 w-full border-b border-border-strong"
+    >
       <div className="w-30 h-30 relative overflow-hidden">
         <Image
           src="/LogoIcon.png"
