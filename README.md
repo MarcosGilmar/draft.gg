@@ -5,7 +5,7 @@ Projeto full-stack para organizar suas match-ups
 ## Tecnologias
 
 - **Monorepo:** Turborepo
-- **Frontend:** Next.js (App Router) + React + TailwindCSS
+- **Frontend:** Next.js (App Router) + TailwindCSS
 - **Backend:** NestJS + PrismaORM + PostgreSQL
 - **Auth:** JWT RS256 com Passport
 - **Validação:** Zod
@@ -75,7 +75,7 @@ Crie `apps/api/.env` com base em `apps/api/.env.example`:
 DATABASE_URL=
 JWT_PRIVATE_KEY=
 JWT_PUBLIC_KEY=
-PORT=3333
+PORT=
 ```
 
 As chaves JWT devem ser geradas no formato RS256 e codificadas em base64.

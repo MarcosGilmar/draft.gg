@@ -6,7 +6,7 @@ import { HashGenerator } from 'src/domain/cryptography/hash-generator';
 @Injectable()
 export class BcryptHasher implements HashGenerator, HashComparator {
   async hash(plain: string): Promise<string> {
-    return hash(plain, 8);
+    return hash(plain, 12);
   }
 
   async compare(plain: string, hashed: string): Promise<boolean> {
