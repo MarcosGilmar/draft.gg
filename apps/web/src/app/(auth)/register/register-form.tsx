@@ -37,6 +37,7 @@ const passwordRequirements = [
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
 
   const { control, handleSubmit } = useForm<CreateAccountBodySchema>({
     resolver: zodResolver(createAccountBodySchema),
@@ -44,6 +45,7 @@ export default function RegisterForm() {
       name: '',
       email: '',
       password: '',
+      confirmPassword: '',
     },
     mode: 'onTouched',
   });
@@ -166,6 +168,44 @@ export default function RegisterForm() {
                         );
                       })}
                     </ul>
+                  )}
+                </Field>
+              )}
+            />
+            <Controller
+              name="confirmPassword"
+              control={control}
+              render={({ field, fieldState }) => (
+                <Field data-invalid={fieldState.invalid} className='-translate-y-5'>
+                  <FieldLabel htmlFor="confirm-password-input">
+                  </FieldLabel>
+                  <div className="relative">
+                    <Input
+                      {...field}
+                      id="confirm-password-input"
+                      type={showConfirmPassword ? 'text' : 'password'}
+                      aria-invalid={fieldState.invalid}
+                      placeholder="Confirme a senha"
+                      className="h-12 rounded-xl"
+                    />
+                    <button
+                      type="button"
+                      tabIndex={-1}
+                      onClick={() => setShowConfirmPassword((prev) => !prev)}
+                      className="flex absolute right-3 top-1/2 -translate-y-1/2 text-foreground"
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff size={18} className="text-foreground-muted" />
+                      ) : (
+                        <Eye size={18} className="text-foreground-muted" />
+                      )}
+                    </button>
+                  </div>
+                  {fieldState.invalid && (
+                    <FieldError
+                      errors={[fieldState.error]}
+                      className="text-xs text-destructive"
+                    />
                   )}
                 </Field>
               )}
