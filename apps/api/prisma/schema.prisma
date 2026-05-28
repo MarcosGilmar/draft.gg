@@ -21,6 +21,8 @@ model Users {
   password  String?
   avatar    String?
   createdAt DateTime @default(now()) @map("created_at")
+  recoveryCode String?
+  recoveryCodeExpiresAt DateTime?
 
   notes Notes[]
 

@@ -8,6 +8,8 @@ export interface UserProps {
   password: string | null;
   avatar: string | null;
   createdAt: Date;
+  recoveryCode: string | null;
+  recoveryCodeExpiresAt: Date | null;
 }
 
 export class User extends Entity<UserProps> {
@@ -16,7 +18,14 @@ export class User extends Entity<UserProps> {
   }
 
   static create(
-    props: Optional<UserProps, 'createdAt' | 'avatar' | 'password'>,
+    props: Optional<
+      UserProps,
+      | 'createdAt'
+      | 'avatar'
+      | 'password'
+      | 'recoveryCode'
+      | 'recoveryCodeExpiresAt'
+    >,
     id?: UniqueEntityId,
   ): User {
     return new User(
@@ -25,6 +34,8 @@ export class User extends Entity<UserProps> {
         password: props.password ?? null,
         avatar: props.avatar ?? null,
         createdAt: props.createdAt ?? new Date(),
+        recoveryCode: props.recoveryCode ?? null,
+        recoveryCodeExpiresAt: props.recoveryCodeExpiresAt ?? null,
       },
       id,
     );

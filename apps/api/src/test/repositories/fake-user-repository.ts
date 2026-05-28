@@ -15,4 +15,8 @@ export class FakeUserRepository implements UsersRepository {
 
     return Promise.resolve();
   }
+
+  saveResetCode(user: User, code: string, expirationTime: Date): Promise<void> {
+    //para fazer os testes depois
+  }
 }

@@ -25,4 +25,20 @@ export class PrismaUsersRepository implements UsersRepository {
 
     await this.prismaService.users.create({ data });
   }
+
+  async saveResetCode(
+    user: User,
+    code: string,
+    expirationTime: Date,
+  ): Promise<void> {
+    await this.prismaService.users.update({
+      where: {
+        id: user.id.toValue(),
+      },
+      data: {
+        recoveryCode: code,
+        recoveryCodeExpiresAt: expirationTime,
+      },
+    });
+  }
 }
