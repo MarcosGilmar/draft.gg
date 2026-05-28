@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { ChampionProps } from '@repo/shared/types/champion';
-import { ChampionsRepository } from 'src/domain/repositories/champion-repository';
+import { ChampionsRepository } from 'src/application/ports/riot/champion-repository';
 import { DDragonVersionService } from '../services/ddragon-version.service';
 import { DDragonChampion } from '../types/ddragon-types';
 

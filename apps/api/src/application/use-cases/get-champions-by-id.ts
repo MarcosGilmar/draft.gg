@@ -1,8 +1,8 @@
+import { Injectable } from '@nestjs/common';
 import { ChampionProps } from '@repo/shared/types/champion';
 import { Either, left, right } from 'src/core/either';
-import { ChampionsRepository } from '../repositories/champion-repository';
-import { ChampionNotFound } from '../errors/champion-not-found-error';
-import { Injectable } from '@nestjs/common';
+import { ChampionNotFound } from '../../domain/errors/champion-not-found-error';
+import { ChampionsRepository } from '../ports/riot/champion-repository';
 
 interface GetChampionByIdUseCaseInput {
   id: string;

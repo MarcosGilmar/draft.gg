@@ -1,7 +1,7 @@
 import { FakeHashGenerator } from 'src/test/cryptography/fake-hash-generator';
 import { FakeUserRepository } from 'src/test/repositories/fake-user-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { UserAlreadyExistsError } from '../errors/user-already-exists-error';
+import { UserAlreadyExistsError } from '../../domain/errors/user-already-exists-error';
 import { CreateUserUseCase } from './create-user';
 
 describe('CreateUserUseCase', () => {

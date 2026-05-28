@@ -10,8 +10,8 @@ import {
   type CreateAccountBodySchema,
   createAccountBodySchema,
 } from '@repo/shared/schemas/auth';
-import { AuthenticateUserUseCase } from 'src/domain/use-cases/authenticate-user';
-import { CreateUserUseCase } from 'src/domain/use-cases/create-user';
+import { AuthenticateUserUseCase } from 'src/application/use-cases/authenticate-user';
+import { CreateUserUseCase } from 'src/application/use-cases/create-user';
 import { Public } from 'src/infra/auth/public';
 import { ZodValidationPipe } from 'src/infra/http/pipes/zod-validation-pipe';
 

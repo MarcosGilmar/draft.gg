@@ -2,7 +2,7 @@ import { FakeEncrypter } from 'src/test/cryptography/fake-encrypter';
 import { FakeHashComparator } from 'src/test/cryptography/fake-hash-comparator';
 import { FakeUserRepository } from 'src/test/repositories/fake-user-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { User } from '../entities/user';
+import { User } from '../../domain/entities/user';
 import { AuthenticateUserUseCase } from './authenticate-user';
 
 describe('AuthenticateUserUseCase', () => {

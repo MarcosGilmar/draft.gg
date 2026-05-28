@@ -1,5 +1,5 @@
 import { ChampionProps } from '@repo/shared/types/champion';
-import { ChampionsRepository } from 'src/domain/repositories/champion-repository';
+import { ChampionsRepository } from 'src/application/ports/riot/champion-repository';
 
 export class FakeChampionsRepository implements ChampionsRepository {
   public items: ChampionProps[] = [];

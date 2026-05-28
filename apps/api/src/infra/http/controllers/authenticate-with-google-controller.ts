@@ -9,7 +9,7 @@ import {
   type AuthenticateWithGoogleBodySchema,
   authenticateWithGoogleBodySchema,
 } from '@repo/shared/schemas/auth';
-import { AuthenticateWithGoogleUseCase } from 'src/domain/use-cases/authenticate-with-google';
+import { AuthenticateWithGoogleUseCase } from 'src/application/use-cases/authenticate-with-google';
 import { Public } from 'src/infra/auth/public';
 import { ZodValidationPipe } from '../pipes/zod-validation-pipe';
 

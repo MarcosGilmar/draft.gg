@@ -1,4 +1,4 @@
-import { HashGenerator } from 'src/domain/cryptography/hash-generator';
+import { HashGenerator } from 'src/application/ports/cryptography/hash-generator';
 
 export class FakeHashGenerator implements HashGenerator {
   hash(plain: string): Promise<string> {

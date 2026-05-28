@@ -1,7 +1,7 @@
 import { ChampionProps } from '@repo/shared/types/champion';
 import { FakeChampionsRepository } from 'src/test/repositories/fake-champions-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { ChampionNotFound } from '../errors/champion-not-found-error';
+import { ChampionNotFound } from '../../domain/errors/champion-not-found-error';
 import { GetChampionByIdUseCase } from './get-champions-by-id';
 
 const mockChampion: ChampionProps = {

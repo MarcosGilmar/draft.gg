@@ -1,7 +1,7 @@
 import { FakeEncrypter } from 'src/test/cryptography/fake-encrypter';
 import { FakeUserRepository } from 'src/test/repositories/fake-user-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { User } from '../entities/user';
+import { User } from '../../domain/entities/user';
 import { AuthenticateWithGoogleUseCase } from './authenticate-with-google';
 
 describe('AuthenticateWithGoogleUseCase', () => {

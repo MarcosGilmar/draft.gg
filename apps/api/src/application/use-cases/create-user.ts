@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Either, left, right } from 'src/core/either';
-import { HashGenerator } from '../cryptography/hash-generator';
-import { User } from '../entities/user';
-import { UserAlreadyExistsError } from '../errors/user-already-exists-error';
-import { UsersRepository } from '../repositories/users-repository';
+import { User } from '../../domain/entities/user';
+import { UserAlreadyExistsError } from '../../domain/errors/user-already-exists-error';
+import { UsersRepository } from '../../domain/repositories/users-repository';
+import { HashGenerator } from '../ports/cryptography/hash-generator';
 
 interface CreateUserCaseInput {
   name: string;

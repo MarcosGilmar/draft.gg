@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Either, right } from 'src/core/either';
-import { Encrypter } from '../cryptography/encrypter';
-import { User } from '../entities/user';
-import { InvalidCredentialsError } from '../errors/invalid-credentials-error';
-import { UsersRepository } from '../repositories/users-repository';
+import { User } from '../../domain/entities/user';
+import { InvalidCredentialsError } from '../../domain/errors/invalid-credentials-error';
+import { UsersRepository } from '../../domain/repositories/users-repository';
+import { Encrypter } from '../ports/cryptography/encrypter';
 
 interface AuthenticateWithGoogleUseCaseInput {
   email: string;

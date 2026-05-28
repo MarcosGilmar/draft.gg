@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ChampionsRepository } from 'src/domain/repositories/champion-repository';
+import { ChampionsRepository } from 'src/application/ports/riot/champion-repository';
 import { DDragonChampionRepository } from './repositories/ddragon-champions-repository';
 import { DDragonVersionService } from './services/ddragon-version.service';
 

@@ -5,8 +5,8 @@ import {
   NotFoundException,
   Param,
 } from '@nestjs/common';
-import { GetChampionsUseCase } from 'src/domain/use-cases/get-champions';
-import { GetChampionByIdUseCase } from 'src/domain/use-cases/get-champions-by-id';
+import { GetChampionsUseCase } from 'src/application/use-cases/get-champions';
+import { GetChampionByIdUseCase } from 'src/application/use-cases/get-champions-by-id';
 import { Public } from 'src/infra/auth/public';
 
 @Controller('/champions')

@@ -1,4 +1,4 @@
-import { HashComparator } from 'src/domain/cryptography/hash-comparator';
+import { HashComparator } from 'src/application/ports/cryptography/hash-comparator';
 
 export class FakeHashComparator implements HashComparator {
   compare(plain: string, hashed: string): Promise<boolean> {

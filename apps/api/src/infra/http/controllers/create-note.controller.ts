@@ -1,7 +1,7 @@
 import { Body, Controller, Post } from '@nestjs/common';
+import { CreateNoteUseCase } from 'src/application/use-cases/create-note';
 import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
 import { NoteType } from 'src/domain/entities/note';
-import { CreateNoteUseCase } from 'src/domain/use-cases/create-note';
 import { CurrentUser } from 'src/infra/auth/current-user-decorator';
 import type { TokenPayloadSchema } from 'src/infra/auth/jwt.strategy';
 import { ZodValidationPipe } from 'src/infra/http/pipes/zod-validation-pipe';

@@ -1,7 +1,7 @@
 import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
 import { FakeNotesRepository } from 'src/test/repositories/fake-notes-repository';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { NoteType } from '../entities/note';
+import { NoteType } from '../../domain/entities/note';
 import { CreateNoteUseCase } from './create-note';
 
 describe('CreateNoteUseCase', () => {

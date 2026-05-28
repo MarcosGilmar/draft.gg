@@ -9,7 +9,7 @@ import {
   type AuthenticateBodySchema,
   authenticateBodySchema,
 } from '@repo/shared/schemas/auth';
-import { AuthenticateUserUseCase } from 'src/domain/use-cases/authenticate-user';
+import { AuthenticateUserUseCase } from 'src/application/use-cases/authenticate-user';
 import { Public } from 'src/infra/auth/public';
 import { ZodValidationPipe } from 'src/infra/http/pipes/zod-validation-pipe';
 

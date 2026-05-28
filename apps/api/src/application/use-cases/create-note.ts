@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Either, right } from 'src/core/either';
 import { UniqueEntityId } from 'src/core/entities/unique-entity-id';
-import { Note, NoteType } from '../entities/note';
-import { NotesRepository } from '../repositories/notes-repository';
+import { Note, NoteType } from '../../domain/entities/note';
+import { NotesRepository } from '../../domain/repositories/notes-repository';
 
 interface CreateNoteUseCaseInput {
   title: string;

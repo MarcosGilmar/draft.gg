@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { Either, right } from 'src/core/either';
-import { ChampionsRepository } from '../repositories/champion-repository';
 import { ChampionProps } from '@repo/shared/types/champion';
+import { Either, right } from 'src/core/either';
+import { ChampionsRepository } from '../ports/riot/champion-repository';
 
 type GetChampionsUseCaseOutput = Either<never, ChampionProps[]>;
 
