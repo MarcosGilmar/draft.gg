@@ -37,7 +37,8 @@ const passwordRequirements = [
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
 
   const { control, handleSubmit } = useForm<CreateAccountBodySchema>({
     resolver: zodResolver(createAccountBodySchema),
@@ -176,9 +177,11 @@ export default function RegisterForm() {
               name="confirmPassword"
               control={control}
               render={({ field, fieldState }) => (
-                <Field data-invalid={fieldState.invalid} className='-translate-y-5'>
-                  <FieldLabel htmlFor="confirm-password-input">
-                  </FieldLabel>
+                <Field
+                  data-invalid={fieldState.invalid}
+                  className="-translate-y-5"
+                >
+                  <FieldLabel htmlFor="confirm-password-input"></FieldLabel>
                   <div className="relative">
                     <Input
                       {...field}

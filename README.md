@@ -5,9 +5,9 @@ Projeto full-stack para organizar suas match-ups
 ## Tecnologias
 
 - **Monorepo:** Turborepo
-- **Frontend:** Next.js (App Router) + TailwindCSS
+- **Frontend:** Next.js (App Router) + TailwindCSS + TanStack Query + Axios + React Hook Form + Shadcn/ui
 - **Backend:** NestJS + PrismaORM + PostgreSQL
-- **Auth:** JWT RS256 com Passport
+- **Auth:** JWT RS256 com Passport (Api) + NextAuth.js (Web)
 - **Validação:** Zod
 - **Testes:** Vitest
 - **Linguagem:** TypeScript
@@ -17,23 +17,43 @@ Projeto full-stack para organizar suas match-ups
 ```
 /
 ├── apps/
-│   ├── api/          — API (NestJS)
-│   └── web/          — Aplicação web (Next.js)
+│   ├── api/                — API (NestJS)
+│   └── web/                — Aplicação web (Next.js)
+├── packages/
+│   └── shared/             — Tipos/schemas compartilhados
 ├── config/
-    ├── eslint-config/      — Configuração ESLint compartilhada
-    └── typescript-config/  — Configuração TypeScript compartilhada
+│   ├── eslint-config/      — Configuração ESLint compartilhada
+│   ├── prettier-config/    — Configuração Prettier compartilhada
+│   └── typescript-config/  — Configuração TypeScript compartilhada
+├── docker/
+│   └── postgres/           — Volume/arquivos do Postgres (dev)
+├── docker-compose.yml      — Serviços do ambiente de desenvolvimento
+└── turbo.json              — Configuração do Turborepo
 
 ```
 
 ## Arquitetura
 
-A API segue os princípios de Clean Architecture, separada em:
+A arquitetura do monorepo está dividida em:
 
-- `core/` — utilitários compartilhados (Either, Entity, UniqueEntityId)
-- `domain/` — entidades, repositórios (contratos), use cases e erros do domínio
-- `infra/` — implementações concretas (Prisma, JWT, bcrypt, controllers)
+- **API (`apps/api`)**: segue princípios de Clean Architecture, separada em:
+  - `core/` — utilitários compartilhados;
+  - `domain/` — entidades, erros e contratos;
+  - `application/` — portas (contratos), serviços e casos de uso;
+  - `infra/` — implementações concretas.
 
-O domínio não depende de nenhum framework ou biblioteca externa — apenas TypeScript puro. A camada de infra é responsável por implementar os contratos definidos no domínio.
+  O `domain/` não depende de framework; a infra implementa as interfaces/portas definidas nas camadas internas.
+
+- **WEB (`apps/web`)**: Next.js com App Router.
+  - `src/app/` — rotas e layouts;
+  - `src/actions/` — server actions;
+  - `src/providers/` — composição de providers;
+  - `src/lib/` — utilitários;
+  - `src/components/` — componentes de UI.
+
+- **Shared (`packages/shared`)**: schemas e tipos compartilhados.
+  - `src/schemas/` — validações;
+  - `src/types/` — tipos reutilizáveis.
 
 ## Como rodar
 
@@ -69,6 +89,10 @@ O volume do Postgres é persistido em `docker/postgres/data`.
 
 ## Variáveis de ambiente
 
+Crie os arquivos `.env` a partir dos exemplos:
+
+### API (`apps/api`)
+
 Crie `apps/api/.env` com base em `apps/api/.env.example`:
 
 ```env
@@ -78,7 +102,21 @@ JWT_PUBLIC_KEY=
 PORT=
 ```
 
-As chaves JWT devem ser geradas no formato RS256 e codificadas em base64.
+`JWT_PRIVATE_KEY` e `JWT_PUBLIC_KEY` devem ser chaves **RS256** codificadas em **base64**.
+
+### Web (`apps/web`)
+
+Crie `apps/web/.env` com base em `apps/web/.env.example`:
+
+```env
+NEXT_PUBLIC_API_URL=
+
+NEXTAUTH_SECRET=
+NEXTAUTH_URL=
+
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
 
 ## Prisma
 

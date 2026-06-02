@@ -86,7 +86,7 @@ export default function LoginForm() {
                     <div className="flex items-center w-full justify-between">
                       <span>Senha</span>
                       <Link
-                        href='/forgot-password'
+                        href="/forgot-password"
                         className="text-xs text-primary underline-offset-4 hover:underline"
                       >
                         Esqueceu sua senha?
