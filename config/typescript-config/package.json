@@ -10,6 +10,7 @@
     "./base": "./base.json",
     "./api": "./api.json",
     "./web": "./web.json",
+    "./mobile": "./mobile.json",
     "./react-library": "./react-library.json"
   }
 }

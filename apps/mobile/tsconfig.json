@@ -1,0 +1,8 @@
+{
+  "extends": "@repo/typescript-config/mobile",
+  "compilerOptions": {
+    "strict": true
+  },
+  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.d.ts"],
+  "exclude": ["node_modules"]
+}

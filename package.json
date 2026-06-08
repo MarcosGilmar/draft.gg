@@ -1,5 +1,5 @@
 {
-  "name": "study-app",
+  "name": "draft.gg",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -10,12 +10,11 @@
     "check-types": "turbo run check-types"
   },
   "devDependencies": {
-    "prettier": "^3.7.4",
     "turbo": "^2.9.4",
     "typescript": "5.9.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "packageManager": "npm@10.9.2",
   "workspaces": [

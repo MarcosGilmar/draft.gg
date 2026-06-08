@@ -1,0 +1,31 @@
+{
+  "name": "@repo/mobile",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "prettier": "@repo/prettier-config",
+  "dependencies": {
+    "expo": "~56.0.9",
+    "expo-status-bar": "~56.0.4",
+    "react": "19.2.3",
+    "react-native": "0.85.3",
+    "@repo/shared": "*"
+  },
+  "devDependencies": {
+    "@types/react": "~19.2.2",
+    "typescript": "~5.8.3",
+    "@repo/eslint-config": "*",
+    "@repo/prettier-config": "*",
+    "@repo/typescript-config": "*"
+  },
+  "scripts": {
+    "dev": "expo start",
+    "build": "expo export",
+    "lint": "eslint . --ext .ts,.tsx",
+    "check-types": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "android": "expo start --android",
+    "ios": "expo start --ios"
+  },
+  "private": true
+}

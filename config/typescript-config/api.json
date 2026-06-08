@@ -11,10 +11,8 @@
     "target": "ES2023",
     "sourceMap": true,
     "incremental": true,
-    "noImplicitAny": false,
     "strictBindCallApply": false,
     "noFallthroughCasesInSwitch": false,
-    "strict": true,
-    "strictNullChecks": true
+    "strict": true
   }
 }
